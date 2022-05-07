@@ -13,12 +13,17 @@ class ChewySpider(scrapy.Spider):
             yield response.follow(next_page_link, callback=self.parse)
     
     def parse_product(self, response):
+        global count
+        count = count + 1
+        print(count)
         title = response.css("div[id=product-title] h1::text").get()
         if title is None:
             title = response.css("h1._1I125sScbDIKrqDtOwiNEP::text").get()
             if title is None:
                 print("title missing")
                 print(response.url)
+        if title is not None:
+            title = title.strip()
         brand = response.css("div[id=product-subtitle] a span::text").get()
         if brand is None:
             brand = response.css("span._2nUyiqZtP6R5xwWK9zZQLO a::text").get()
