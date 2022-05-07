@@ -12,7 +12,7 @@ class CsvExportPipeline(object):
     def __init__(self):
         self.file = open('products.csv', 'wb')
         self.exporter = CsvItemExporter(self.file)
-        self.exporter.fields_to_export = ['name', 'brand', 'categories', 'price', 'reviews']
+        self.exporter.fields_to_export = ['name', 'brand', 'categories', 'prices', 'reviews']
   
     def open_spider(self, spider):
         self.exporter.start_exporting()
@@ -30,7 +30,7 @@ class JsonExportPipeline(object):
     def __init__(self):
         self.file = open('products.json', 'wb')
         self.exporter = JsonItemExporter(self.file)
-        self.exporter.fields_to_export = ['name', 'brand', 'categories', 'price', 'reviews']
+        self.exporter.fields_to_export = ['name', 'brand', 'categories', 'prices', 'reviews']
   
     def open_spider(self, spider):
         self.exporter.start_exporting()
